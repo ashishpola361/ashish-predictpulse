@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PredictPulse: AI-Based Traffic Forecast and Auto-Scaler</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #eef2f7, #d9e6f2);
+      height: 100vh;
+      display: grid;
+      place-items: center;
+    }
+    .panel {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 35px 45px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      width: 92%;
+      max-width: 580px;
+      text-align: center;
+    }
+    .panel h2 {
+      font-size: 1.9em;
+      color: #0066cc;
+      margin-bottom: 20px;
+    }
+    .metric {
+      font-size: 1.05em;
+      margin: 10px 0;
+      color: #444;
+    }
+    .label {
+      font-weight: 600;
+      color: #666;
+      display: inline-block;
+      min-width: 150px;
+      text-align: right;
+      margin-right: 8px;
+    }
+    .alert-true {
+      color: #d90429;
+      font-weight: 700;
+    }
+    .alert-false {
+      color: #2b9348;
+      font-weight: 700;
+    }
+    .bottom-note {
+      margin-top: 22px;
+      font-size: 0.85em;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h2>📊 PredictPulse: AI-Based Traffic Forecast and Auto-Scaler</h2>
+
+    <p class="metric"><span class="label">CPU Usage:</span> {{ cpu }}%</p>
+    <p class="metric"><span class="label">Incoming Requests:</span> {{ requests }}</p>
+    <p class="metric"><span class="label">Forecast:</span> {{ predicted }} req/min</p>
+    <p class="metric"><span class="label">Scaling Verdict:</span> {{ decision }}</p>
+    <p class="metric {{ 'alert-true' if is_anomaly else 'alert-false' }}">
+      <span class="label">Anomaly Flag:</span> {{ 'Yes' if is_anomaly else 'No' }}
+    </p>
+
+    <div class="bottom-note">✔️ Metrics saved in system log</div>
+  </div>
+</body>
+</html>
